@@ -10,6 +10,7 @@ export type TaskType = {
     title: string,
     isDone: boolean
 }
+
 function App() {
     let [tasks, setTasks] = useState<Array<TaskType>>([
         {id: v1(), title: "JS", isDone: true},
@@ -33,20 +34,32 @@ function App() {
     function changeFilter(value: FilterValueType) {
         setFilter(value)
     }
-function addTask(title: string) {
+
+    function addTask(title: string) {
         let newTask = {id: v1(), title: title, isDone: false};
         setTasks([newTask, ...tasks])
 
-}
+    }
+
+    function changeStatus(taskId: string, isDone: boolean) { /// Псевдоистина и псевдоложь
+        let task = tasks.find(t => t.id === taskId)
+        if (task) {
+            task.isDone = isDone;
+            setTasks([...tasks]);
+        }
+    }
+
 
     return (
         <div className="App">
-            <Todolist title="4to po 4em?"
+            <Todolist title="Есть задачи?"
                       tasks={taskForTodolist}
                       removeTask={removeTask}
                       changeFilter={changeFilter}
-                      addTask={addTask}/>
-
+                      addTask={addTask}
+                      changeTaskStatus={changeStatus}
+                      filter={filter}
+            />
         </div>
     );
 }
