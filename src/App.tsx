@@ -173,9 +173,6 @@ function App() {
 
 export default App;
 
-
-
-
 // function changeStatus(taskId: string, isDone: boolean) { /// Псевдоистина и псевдоложь
 //     let task = tasks.find(t => t.id === taskId)
 //     if (task) {
